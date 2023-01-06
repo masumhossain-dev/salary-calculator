@@ -1,37 +1,39 @@
+function amounts (fieldId){
+   const valueField = document.getElementById(fieldId).value;
+   const valueConvert = parseInt(valueField);
+   return valueConvert;
+}
+
 document.getElementById('calculate-btn').addEventListener('click', function(){
-   const incomeField = document.getElementById('income-field');
-   const incomeFieldValue = incomeField.value;
-   const incomeFieldValueStr = parseInt(incomeFieldValue);
-
-   const foodCost = document.getElementById('food-cost');
-   const foodCostValue = foodCost.value;
-   const foodCostValueStr = parseInt(foodCostValue);
+   // total income 
+   const totalIncome = amounts('income-field')
+   const foodCost = amounts('food-cost')
+   const rentCost = amounts('rent-cost')
+   const clothsCost = amounts('cloths-cost')
 
 
-   const rentCost = document.getElementById('rent-cost');
-   const rentCostValue = rentCost.value;
-   const rentCostValueStr = parseInt(rentCostValue);
-   
-   
-   const clothsCost = document.getElementById('cloths-cost');
-   const clothsCostValue = clothsCost.value;
-   const clothsCostValueStr = parseInt(clothsCostValue);
-
-   const totalCost = foodCostValueStr + rentCostValueStr + clothsCostValueStr;
+   const totalCost = foodCost + rentCost + clothsCost;
    const totalExpenses = document.getElementById('total-expenses');
    totalExpenses.innerText = totalCost;
 
-   var balance = incomeFieldValueStr - totalCost;
+   const balance = totalIncome - totalCost;
    const currentBalance = document.getElementById('current-balance');
    currentBalance.innerText = balance;
 })
 
 document.getElementById('savings-btn').addEventListener('click', function(){
-   const percent = document.getElementById("savings-amount-field").value;
-   const percentStr = parseInt(percent);
+   const currentBalance = document.getElementById('current-balance').innerText;
+   const balance = parseInt(currentBalance);
 
-   const savingsCalculate = (balance/100)*percentStr;
-     
-   document.getElementById("value1").value = (num / 100) * percent;
+   const savePercentage = amounts("savings-amount-field");
+
+   const savingsCalculate = (balance/100)*savePercentage;
+
+   document.getElementById('saving-amount').innerText = savingsCalculate;
+
+   const remainingBalance = Math.round(balance - savingsCalculate);
+
+   document.getElementById('remaining-balance').innerText = remainingBalance;
+   
 })
   
