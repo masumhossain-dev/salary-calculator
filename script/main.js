@@ -26,14 +26,10 @@ document.getElementById('savings-btn').addEventListener('click', function(){
    const balance = parseInt(currentBalance);
 
    const savePercentage = amounts("savings-amount-field");
-
    const savingsCalculate = (balance/100)*savePercentage;
-
    document.getElementById('saving-amount').innerText = savingsCalculate;
 
-   const remainingBalance = Math.round(balance - savingsCalculate);
-
+   const remainingBalance = balance - savingsCalculate;
    document.getElementById('remaining-balance').innerText = remainingBalance;
-   
 })
   
